@@ -1,6 +1,6 @@
 # GD Soft Yamb 98 v 2.0 - Delphi 3 Reconstruction
 
-This repository contains a reconstructed Delphi 3 source version of **Yamb 98 v 2.0** by GD Soft.
+This repository contains a reconstructed Delphi 3 source version of **GD Soft Yamb 98 v 2.0**.
 
 The program code has been reconstructed to produce code that is byte-identical to the original executable when built with the correct Delphi 3 build process.
 
