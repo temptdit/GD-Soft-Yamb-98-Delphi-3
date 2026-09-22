@@ -4,6 +4,8 @@ This repository contains a reconstructed Delphi 3 source version of **Yamb 98** 
 
 The program code has been reconstructed to produce code that is byte-identical to the original executable when built with the correct Delphi 3 build process.
 
+<img width="603" height="450" alt="yamb" src="https://github.com/user-attachments/assets/ba7ba8d7-96b4-4dbe-9af7-22e148007f58" /> <img width="271" height="220" alt="yamb0" src="https://github.com/user-attachments/assets/98f8a158-ddb2-4c76-bcf0-1ce90ad8de71" />
+
 ## Credits
 
 * **ChatGPT** 
