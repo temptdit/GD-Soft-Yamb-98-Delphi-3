@@ -25,7 +25,7 @@ Other Delphi 3 editions may compile the project, but they can embed a different 
 26 3D 4F 38 C2 82 37 B8 F3 24 42 03 17 9B 3A 83
 ```
 
-For example, the Delphi 3 Standard compiler embeds:
+The Delphi 3 Standard compiler, for example, embeds:
 
 ```text
 23 78 5D 23 B6 A5 F3 19 43 F3 40 02 26 D1 11 C7
@@ -62,6 +62,80 @@ pocetni.txt
 upis_imenaigraca.txt
 about.txt
 ```
+
+### 2. Compile the resources
+
+Compile `Yamb.rc` using Delphi 3's `BRCC32.EXE`:
+
+```bat
+"<DELPHI3>\BIN\BRCC32.EXE" Yamb.rc
+```
+
+This creates `Yamb.res`.
+
+### 3. Compile the project
+
+The project must be compiled **twice**.
+
+First compile with `-B`:
+
+```bat
+"<DELPHI3>\BIN\DCC32.EXE" -B -U"<DELPHI3>\LIB" -$YD -GD Yamb.dpr
+```
+
+Then, without changing any source files or deleting the generated `.dcu` files, compile it again without `-B`:
+
+```bat
+"<DELPHI3>\BIN\DCC32.EXE" -U"<DELPHI3>\LIB" -$YD -GD Yamb.dpr
+```
+
+The `Yamb.exe` produced by the **second compile** is the intended build.
+
+The reason for the two passes is that Delphi 3's `.dcu` files are part of the compiler's build state.
+
+The first pass forces every Pascal unit to be rebuilt:
+
+```text
+Pascal source
+    ↓
+DCC32 -B
+    ↓
+fresh .DCU files
+```
+
+Those `.dcu` files contain compiled information about each unit and its dependencies.
+
+On the second pass, DCC32 sees that the `.dcu` files are newer than the corresponding `.pas` files and reuses them instead of compiling every unit directly from source again:
+
+```text
+Yamb.dpr + existing .DCU files
+    ↓
+DCC32
+    ↓
+final executable
+```
+
+Loading a unit from a `.dcu` is not internally identical to compiling the same `.pas` file from scratch. In Delphi 3, the stored dependency information is reconstructed differently when the `.dcu` is loaded. This changes the order in which the compiler later walks unit dependencies for initialization, finalization, and `PACKAGEINFO` metadata.
+
+That difference is required to reproduce the original executable.
+
+A clean one-pass build can produce the same program logic but a different compiler-generated unit ordering. With the two-pass build, the original physical code layout, initialization/finalization data, and `PACKAGEINFO` ordering are reproduced together.
+
+This does not mean the original programmer intentionally used a special two-stage build process. The original executable was most likely produced during normal Delphi development:
+
+```text
+edit project
+    ↓
+Compile / Run
+    ↓
+Delphi creates .DCU files
+    ↓
+Compile / Run again later
+    ↓
+unchanged units are loaded from .DCU
+```
+
+The explicit `-B` first pass is simply a deterministic way to recreate that incremental-build state from a clean copy of the source.
 
 ### 2. Compile the resources
 
