@@ -145,38 +145,6 @@ unchanged units are loaded from .DCU
 
 The explicit `-B` first pass is simply a deterministic way to recreate that incremental-build state from a clean copy of the source.
 
-### 2. Compile the resources
-
-Compile `Yamb.rc` using Delphi 3's `BRCC32.EXE`:
-
-```bat
-"<DELPHI3>\BIN\BRCC32.EXE" Yamb.rc
-```
-
-This creates `Yamb.res`.
-
-### 3. Compile the project
-
-The project must be compiled **twice**.
-
-Replace `<DELPHI3>` with the path to your Delphi 3 installation.
-
-First compile with `-B`:
-
-```bat
-"<DELPHI3>\BIN\DCC32.EXE" -B -U"<DELPHI3>\LIB" -$YD -GD Yamb.dpr
-```
-
-Then, without changing any source files or deleting the generated `.dcu` files, compile it again without `-B`:
-
-```bat
-"<DELPHI3>\BIN\DCC32.EXE" -U"<DELPHI3>\LIB" -$YD -GD Yamb.dpr
-```
-
-The `Yamb.exe` produced by the **second compile** is the intended build.
-
-The two-pass build is required to reproduce the original unit initialization/finalization ordering and byte-identical program code.
-
 ## Reconstruction status
 
 All program code and all non-resource sections are byte-identical to the original executable.
