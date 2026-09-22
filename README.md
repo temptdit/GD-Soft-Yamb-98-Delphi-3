@@ -4,6 +4,12 @@ This repository contains a reconstructed Delphi 3 source version of **Yamb 98** 
 
 The program code has been reconstructed to produce code that is byte-identical to the original executable when built with the correct Delphi 3 build process.
 
+## Credits
+
+* **ChatGPT** 
+* **Ghidra**
+* **DeDe** 
+
 ## Files
 
 * `*.pas` - Delphi source files
