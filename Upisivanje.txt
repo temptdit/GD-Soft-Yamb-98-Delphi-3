@@ -1,0 +1,107 @@
+object Upis: TUpis
+  Left = 271
+  Top = 249
+  BorderIcons = []
+  BorderStyle = bsSingle
+  Caption = 'Upis'
+  ClientHeight = 166
+  ClientWidth = 297
+  Color = 8404992
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OnCreate = FormCreate
+  OnMouseMove = FormMouseMove
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 48
+    Top = 12
+    Width = 208
+    Height = 22
+    Caption = 'Èestitamo, imate upis !'
+    Font.Charset = EASTEUROPE_CHARSET
+    Font.Color = clYellow
+    Font.Height = -19
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 12
+    Top = 106
+    Width = 25
+    Height = 16
+    Caption = 'Ime:'
+    Font.Charset = EASTEUROPE_CHARSET
+    Font.Color = clTeal
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 126
+    Top = 60
+    Width = 44
+    Height = 22
+    Alignment = taCenter
+    Caption = '0000'
+    Font.Charset = EASTEUROPE_CHARSET
+    Font.Color = clYellow
+    Font.Height = -19
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 131
+    Top = 45
+    Width = 37
+    Height = 16
+    Caption = 'Poeni:'
+    Font.Charset = EASTEUROPE_CHARSET
+    Font.Color = clTeal
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label5: TLabel
+    Left = 120
+    Top = 138
+    Width = 61
+    Height = 22
+    Cursor = crHandPoint
+    Alignment = taCenter
+    AutoSize = False
+    Caption = 'OK'
+    Font.Charset = EASTEUROPE_CHARSET
+    Font.Color = clYellow
+    Font.Height = -19
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentFont = False
+    OnClick = Label5Click
+    OnMouseMove = Label5MouseMove
+  end
+  object Edit1: TEdit
+    Left = 42
+    Top = 102
+    Width = 241
+    Height = 27
+    Color = 8404992
+    Font.Charset = EASTEUROPE_CHARSET
+    Font.Color = clYellow
+    Font.Height = -16
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    MaxLength = 27
+    ParentFont = False
+    TabOrder = 0
+    Text = 'GD Soft'
+    OnEnter = Edit1Enter
+  end
+end
